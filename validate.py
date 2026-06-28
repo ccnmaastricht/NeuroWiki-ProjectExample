@@ -21,6 +21,8 @@ CONFIDENCE_TYPES = {"phenomenon", "model", "region"}
 VALID_CONFIDENCE = {"established", "debated", "speculative"}
 STATUS_TYPES = {"theory"}
 VALID_STATUS = {"active-research-area", "settled", "abandoned"}
+EXPLANATORY_ROLE_TYPES = {"model"}
+VALID_EXPLANATORY_ROLE = {"how-possibly", "how-actually", "phenomenological"}
 
 
 def parse_frontmatter(text):
@@ -87,6 +89,13 @@ def validate_page(path, fm, body):
             errors.append("Missing status field")
         elif val not in VALID_STATUS:
             errors.append(f"Invalid status value: {val!r}")
+
+    if fm.get("type") in EXPLANATORY_ROLE_TYPES:
+        val = fm.get("explanatory_role", "")
+        if not val or "MISSING" in val:
+            errors.append("Missing explanatory_role field")
+        elif val not in VALID_EXPLANATORY_ROLE:
+            errors.append(f"Invalid explanatory_role value: {val!r}")
 
     updated_val = fm.get("updated", "")
     if updated_val and "MISSING" not in updated_val:

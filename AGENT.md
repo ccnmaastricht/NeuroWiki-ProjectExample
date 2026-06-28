@@ -104,6 +104,8 @@ Every `PHE_`, `MOD_`, and `REG_` page must carry a confidence field. Default to 
 
 Confidence upgrades and downgrades both require a note in the page's **Controversies** section citing the evidence that motivated the change.
 
+> **Note**: `speculative` reflects thin evidence, not design purpose. A MOD_ page with `explanatory_role: how-possibly` is not speculative by default — how-possibly models are legitimate epistemic stages regardless of evidence quality. Distinguish evidence quality (confidence field) from explanatory status (`explanatory_role` field and **Explanatory Scope** section).
+
 ### Status (THE_ pages)
 
 `THE_` pages do not carry a confidence or quality rating. Instead they carry a neutral **Status** field describing the theory's current standing in the field.
@@ -179,6 +181,7 @@ Link to [[MOD_...]] pages.>
 type: model
 title: <full human-readable name>
 subtype: mechanistic | normative | data-driven | behavioral | analysis-method
+explanatory_role: how-possibly | how-actually | phenomenological
 confidence: established | debated | speculative
 updated: YYYY-MM-DD
 related:
@@ -192,7 +195,19 @@ tags: []
 
 ## Description
 
-<What is this model/method? What problem was it designed to solve?>
+<What is this model/method? What problem was it designed to solve?
+What idealization strategy does it use: Galilean (distortions intended for progressive de-idealization), minimalist (incompleteness is the point), or multiple-models (one of several incompatible models pursuing different representational ideals)?>
+
+## Descriptive Target
+
+<What regularities does this model fit? What data or phenomena is it empirically adequate to?
+A phenomenon showing a different pattern falsifies the model with respect to its descriptive target.>
+
+## Explanatory Scope
+
+<At what level of organization does this model have genuine mechanistic or constitutive grounding?
+If phenomenological at one level, state which — and state whether it is mechanistic at another level.
+Level-relativity is mandatory: a model may be phenomenological at one level and mechanistic at another; both must be stated explicitly.>
 
 ## Formal Description
 
@@ -251,8 +266,11 @@ tags: []
 
 ## Explanatory Schema
 
-<What abstract schema unifies this theory's models?
-What pattern of explanation does it invoke — what kind of thing explains what kind of thing? (@Key)>
+<State the abstract pattern of explanation. Must satisfy three conditions:
+1. Verbal and general: covers the full model family without fixing mathematical form.
+2. Constraining: specify what would fail to instantiate it. A schema that excludes nothing is a slogan, not a schema.
+3. Predictively inert alone: note which phenomena fall within scope but require specific model instances to test or falsify.
+(@Key)>
 
 ## Model Family
 
