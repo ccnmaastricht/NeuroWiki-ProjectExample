@@ -9,7 +9,7 @@ until the verification checklist for that page's most recent session has been si
 
 | Role | Responsibility |
 |------|---------------|
-| PI | Signs off on all confidence changes and all `⚑ Human review required` flags |
+| PI | Signs off on all confidence changes and all `⚑ Human review requested` flags (MOD_ and THE_ pages — philosophy-of-science classification questions) |
 | PhD students | Spot-check pages in their domain after sessions they initiate; sign off |
 | Any lab member running a session | Complete the post-session checklist before closing |
 
@@ -55,10 +55,11 @@ Run a Review Session. Follow agent/REVIEW.md exactly.
 
 Alternatively, resolve flags manually:
 
-**`⚑ Human review required`** (PI):
-- Read both cited positions
-- If resolvable: update Controversies entry, set status, remove flag from page header
-- If not: leave flag, discuss with project team if it affects a modeling decision
+**`⚑ Human review requested`** (PI — MOD_ and THE_ pages only):
+- Read the classification question and the relevant page context
+- Provide your judgment on the philosophy-of-science question (e.g., Marr level, mechanistic vs. phenomenological character, explanatory scope)
+- If resolved: update the relevant frontmatter field(s), update the Controversies entry, set status, remove flag from page header
+- If not yet resolvable: leave flag; discuss with project team
 
 **`<!-- UNCITED -->`**:
 - If source identifiable: add citation, remove flag

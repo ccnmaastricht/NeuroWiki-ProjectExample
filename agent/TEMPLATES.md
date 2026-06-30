@@ -688,27 +688,40 @@ The agent is never permitted to silently choose one position over another when p
 
 **Quantitative and scope**: represent both values/conditions with citations. Note the likely source of discrepancy. Do not average or choose. Set confidence to `debated` if not already.
 
-**Qualitative**: both positions in Empirical Basis with neutral framing. Structured Controversies entry:
+**Qualitative**: all positions in Empirical Basis with neutral framing. Structured Controversies entry:
 
 ```
 ### <Conflict title>
 - **Position A**: <statement> (@Key1)
 - **Position B**: <statement> (@Key2)
+- *(add further positions as needed)*
 - **Possible resolution**: <if one exists>
 - **Status**: unresolved | partially resolved | resolved
-- **⚑ Human review requested**: <reason, if modeling-relevant>
 ```
 
-**Interpretive**: represent both interpretations with citations. Do not adjudicate.
+**Interpretive**: represent all interpretations with citations. Do not adjudicate.
 
-**Irreconcilable** (bearing on core modeling choices): add to Controversies, set confidence to `debated`, add to page header:
+For all conflict types: set confidence to `debated` when conflicting evidence or interpretations cannot be reconciled. Do not escalate empirical disagreements to human review — document them in Controversies with all positions and citations. The wiki records what the literature says, not who is right. This applies even when multiple sources disagree on what a theory claims or what a model predicts: note the disagreement and cite it.
 
+### When to raise a ⚑ Human review flag
+
+Raise a ⚑ flag only on **MOD_ and THE_ pages**, and only when the source material does not settle a **philosophy-of-science classification question** — i.e., a question about how to characterize or categorize the model or theory that requires judgment beyond reading the article. Examples: whether a model's variables satisfy the 3M criterion, what level of Marr's hierarchy a model operates at, whether a theory's scope is genuinely explanatory or merely descriptive, how to characterize a theory's mechanistic commitments.
+
+Do not flag for: empirical claims, theory content (what a theory asserts), model predictions, method comparisons, or any question that is answered by the literature even if the literature disagrees — those belong in Controversies.
+
+**Format for ⚑ flags** (MOD_ and THE_ pages only):
+
+Add a line to the relevant Controversies entry (or create a dedicated entry):
 ```
-> ⚑ **Human review required**: Irreconcilable conflict between (@Key1) and (@Key2) on [topic].
-> See Controversies section.
+- **⚑ Human review requested**: <the specific classification question the agent cannot resolve from the source material>
 ```
 
-List all such flags in the session summary.
+Add a banner to the page header:
+```
+> ⚑ **Human review requested**: [Classification question]. See Controversies section.
+```
+
+List all ⚑ flags in the session summary.
 
 ---
 

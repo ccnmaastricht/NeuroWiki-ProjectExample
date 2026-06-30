@@ -9,7 +9,9 @@ Run a Review Session. Follow agent/REVIEW.md exactly.
 
 ## Purpose
 
-This workflow leads the human through all open flags in one unsigned session. The human makes every resolution decision; the agent presents, applies, and records. Spot-checks remain the human's responsibility (see `docs/VERIFICATION.md`).
+This workflow leads the human through all open flags in one unsigned session. Spot-checks remain the human's responsibility (see `docs/VERIFICATION.md`).
+
+⚑ flags are narrow in scope: they appear only on MOD_ and THE_ pages, and only for philosophy-of-science classification questions the agent could not resolve from the source material (e.g., Marr level, mechanistic vs. phenomenological character, explanatory scope). Empirical disagreements are documented in Controversies without human arbitration — the human is not asked to decide which position is correct.
 
 ---
 
@@ -53,15 +55,12 @@ Report to the human: "Found N flag(s): [summary list]. Working through them now.
 
 ## Step R3 — Resolve ⚑ Flags (Synchronous)
 
-A Controversies entry has this structure:
+A ⚑ flag on a MOD_ or THE_ page appears either as a standalone Controversies entry or appended to an existing one:
 
 ```markdown
-### <Conflict title>
-- **Position A**: <statement> (@Key1)
-- **Position B**: <statement> (@Key2)
-- **Possible resolution**: <if one exists>
-- **Status**: unresolved | partially resolved | resolved
-- **⚑ Human review requested**: <reason>
+### <Classification question title>
+- **⚑ Human review requested**: <specific philosophy-of-science question the agent could not resolve>
+- **Status**: unresolved
 ```
 
 For each ⚑ flag, one at a time:
@@ -69,23 +68,22 @@ For each ⚑ flag, one at a time:
 **Present:**
 
 ```
-⚑ CONFLICT — <page title> (<TYPE_slug>)
+⚑ CLASSIFICATION QUESTION — <page title> (<TYPE_slug>)
 
-<Paste the full Controversies entry verbatim, including both positions, citations, possible resolution, and current status.>
+<Paste the full Controversies entry or flag text verbatim, including the specific classification question and any relevant context from the page.>
 
-How would you like to resolve this?
-  A) Accept Position A
-  B) Accept Position B
-  C) Mark as partially resolved — I'll provide a note
-  D) Leave open — return to this later
+Please provide your judgment on this classification question, or choose:
+  R) Resolved — I'll provide the answer or classification
+  P) Partially resolved — I'll provide a note; leave open for further review
+  D) Defer — leave open; return to this later
 ```
 
 **Apply immediately based on human response:**
 
 | Response | Action |
 |----------|--------|
-| A or B | Update the Controversies entry: set `Status: resolved`, record which position was accepted and why (use the human's words). Remove the `**⚑ Human review requested**` line from the entry and the `> ⚑ **Human review required**: ...` banner from the page header. If the resolution changes confidence, update the frontmatter field. |
-| C | Update the Controversies entry with the human's note. Set `Status: partially resolved`. Remove the `**⚑ Human review requested**` line from the entry and the banner from the page header. |
+| R | Update the relevant frontmatter field(s) and/or page section with the human's classification. Update the Controversies entry: set `Status: resolved`, record the classification and the human's reasoning. Remove the `**⚑ Human review requested**` line from the entry and the `> ⚑ **Human review requested**: ...` banner from the page header. |
+| P | Update the Controversies entry with the human's note. Set `Status: partially resolved`. Remove the `**⚑ Human review requested**` line from the entry and the banner from the page header. |
 | D | Leave the page unchanged. Record this flag as still open. |
 
 After applying, confirm: "Done — [describe change made, or 'flag left open']. Moving to next item."
