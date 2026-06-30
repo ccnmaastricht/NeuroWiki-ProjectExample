@@ -5,6 +5,37 @@ See VERIFICATION.md for the verification protocol.
 
 ---
 
+## Session 2026-06-30 — Structural Harmonization
+
+**Run by**: agent
+
+### Changes
+
+- Pages audited: 8 (MOD_kuramoto-v1-oscillator, PAR_texture-figure-ground-discrimination, PHE_figure-ground-segregation, PHE_gamma-synchrony, REG_v1, THE_binding-by-synchrony, THE_weakly-coupled-oscillators, wiki/index.md)
+- Pages with no issues: 6 (MOD_kuramoto-v1-oscillator, PHE_figure-ground-segregation, PHE_gamma-synchrony, REG_v1, THE_binding-by-synchrony, THE_weakly-coupled-oscillators)
+- Pages repaired: 1
+- Missing frontmatter fields added: none
+- Missing sections stubbed: none
+- Section reordering: wiki/index.md (`## Ingestion Log` moved from before `# Wiki Index` H1 heading to after it)
+- Heading renames: none
+- Notation corrections: none
+
+### Flags raised
+- ⚑ Human review: none
+- `<!-- UNCITED -->`: none
+- `<!-- UNRESOLVED -->`: none
+
+### Flags resolved this session
+- none
+
+### Action items
+- agent/REFINE_A.md Step A1 checklist is out of sync with TEMPLATES.md: (a) MOD_ row still lists `subtype` as required field — should be `explanatory_character`, `marr_level`, `construction`, `exploratory`; (b) MOD_ section order missing `Descriptive Target` and `Explanatory Scope`; (c) REG_ section order lists `Physiology` — should be `Principal Cell Types`. Update REFINE_A.md Step A1 before next structural harmonization run.
+- PAR_texture-figure-ground-discrimination has a non-canonical `## Stimulus Parameters` section (between Standard Variants and Limitations and Confounds) with no canonical equivalent. Consider adding `## Stimulus Parameters` to the PAR_ template in TEMPLATES.md if paradigm-specific parameter tables are to be standardized.
+
+**Sign-off**: *(pending)*
+
+---
+
 ## Session 2026-06-29 — Review: 2026-06-29
 
 **Run by**: Mario Senden

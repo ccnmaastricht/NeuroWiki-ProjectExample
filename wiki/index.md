@@ -4,6 +4,8 @@ title: Wiki Root Index
 updated: 2026-06-29
 ---
 
+# Wiki Index — Example Wiki: The Role of Gamma Synchrony in Early Visual Cortex
+
 ## Ingestion Log
 | Key | Journal | Year | Promoted | Secondary added |
 |-----|---------|------|----------|-----------------|
@@ -12,8 +14,6 @@ updated: 2026-06-29
 | Lowet2017 | eLife | 2017 | 2026-06-28 | Gray1989, Bosman2012, Fries2015, Ermentrout2001 |
 | Karimian2025 | eLife | 2025 | (origin) | Roelfsema2023→promoted, + all reconstructed entries |
 | Roelfsema2023 | Neuron | 2023 | 2026-06-28 | Roelfsema1998 |
-
-# Wiki Index — Example Wiki: The Role of Gamma Synchrony in Early Visual Cortex
 
 ## Phenomena
 | Page | Title | Confidence | Updated |
