@@ -71,6 +71,10 @@ Link to [[MOD_...]] and [[THE_...]] pages.>
 > or mechanism — even implicitly — it belongs in MOD_. Models used purely as measurement or
 > summarization tools without mechanistic interpretation belong in ANA_.
 
+> **MOD_ vs SIM_ boundary**: a MOD_ page describes the model; a SIM_ page describes the software
+> that integrates it. Hodgkin-Huxley is MOD_; NEURON, which numerically solves it, is SIM_.
+> Name a model's reference implementation on the SIM_ page, not here.
+
 > **Classification guide**
 >
 > `marr_level` — choose all that apply:
@@ -499,7 +503,9 @@ Draw from methodological comparisons and review papers; do not speculate. (@Key)
 
 ## Software and Hardware
 
-<Key platforms, pipelines, equipment, or reference implementations.>
+<Key platforms, pipelines, equipment, or reference implementations.
+Acquisition and preprocessing pipelines belong here. Simulation software belongs on its own
+[[SIM_...]] page — link to it rather than describing it here.>
 
 ## Controversies *(add only if encountered)*
 
@@ -555,7 +561,9 @@ evaluations; do not speculate. (@Key)>
 
 ## Software Implementations
 
-<Key tools, packages, or reference implementations.>
+<Key tools, packages, or reference implementations.
+Analysis toolboxes (e.g. Elephant, MNE) belong here, not on a [[SIM_...]] page: they consume
+data rather than generate it.>
 
 ## Usage in the Literature
 
@@ -564,7 +572,134 @@ evaluations; do not speculate. (@Key)>
 
 ---
 
-### 1.10 DAT_ — Canonical Dataset
+### 1.10 SIM_ — Simulation Software
+
+> **SIM_ boundary**: a SIM_ page describes software that instantiates a model and numerically
+> integrates it to produce simulated data. Analysis toolboxes belong in ANA_ (they consume data);
+> acquisition and preprocessing pipelines belong in TECH_ (they handle real signals). SIM_ pages
+> carry no `confidence` field — a simulator is an artifact, not an empirical claim. Evidence
+> *about* a simulator (benchmark agreement, reproduction of reference solutions) goes in
+> **Verification and Validation**, with citations.
+
+> **Classification guide**
+>
+> `subtype`:
+> - `engine`: numerically integrates models directly. Example: NEST, NEURON, Arbor, Brian2, STEPS.
+> - `interface`: a model-specification layer over one or more engines, defining no solver of its
+>   own. Example: PyNN, NetPyNE, NESTML.
+> - `platform`: bundles an engine with data, connectivity, and workflow tooling into an integrated
+>   environment. Example: The Virtual Brain, Open Source Brain.
+
+```markdown
+---
+type: simulator
+title: <full human-readable name>
+subtype: engine | interface | platform
+scale:                # list; all that apply
+  - molecular
+  - single-neuron
+  - microcircuit
+  - large-scale-network
+  - whole-brain
+formalism:            # list; all that apply
+  - reaction-diffusion
+  - multicompartment-biophysical
+  - point-neuron-spiking
+  - rate-based
+  - neural-mass
+  - neural-field
+updated: YYYY-MM-DD
+related:
+  - MOD_<slug>
+  - NET_<slug>
+  - SIM_<slug>
+tags: []
+---
+
+# <Simulator name>
+
+## Description
+
+<What is this software? Who developed it and toward what design goal?
+State the core abstraction it exposes to the user — the objects a model is built from
+(e.g. point neurons and spike-event synapses; branched morphologies obeying the cable
+equation; neural masses coupled on a connectome).>
+
+## Modeling Scope
+
+<What classes of model can be expressed in this simulator, and what cannot?
+This is the bridge between a model and the software able to instantiate it.
+Link to the [[MOD_...]], [[NET_...]], and [[CEL_...]] pages it can and cannot realize.
+State exclusions explicitly: what a user must leave the tool to do.>
+
+## Numerical Methods and Implementation
+
+<Integration scheme, time-stepping (fixed grid vs. adaptive/variable step), spike handling
+(clock-driven vs. event-driven), solver choices, and the parallelization model
+(MPI / OpenMP / GPU). Present the scheme formally before prose interpretation.
+$inline$ and $$block$$ LaTeX. (@Key)>
+
+## Built-in Assumptions and Idealizations
+
+<What does using this simulator commit the user to, whether or not they intend it?
+Discretization of spike times and delays, default synapse and neuron models, boundary
+conditions, floating-point and ordering effects on reproducibility.>
+
+- **Assumption**: <statement>
+  - *Justification*: <why the design makes this choice> (@Key)
+  - *When this matters*: <the class of scientific question whose answer this changes>
+
+## Verification and Validation
+
+<Evidence that the software computes what it claims to. Reproduction of analytic or reference
+solutions, cross-simulator benchmark agreement, published comparison studies.
+Every claim cited. This section carries the evidential weight that a confidence field would
+otherwise hold — where sources disagree, record all positions in Controversies. (@Key)>
+
+## Performance and Scaling
+
+<Quantitative claims: neurons or synapses simulated per second, real-time factor, memory
+footprint, strong and weak scaling behaviour, core and node counts.
+Every number must be cited, and the hardware it was measured on stated. (@Key)>
+
+## Interoperability and Model Specification
+
+<How is a model described to this simulator (native API, domain-specific language, declarative
+format)? Which interchange standards does it read or emit (NeuroML, LEMS, SONATA, PyNN)?
+What can be imported from and exported to other simulators?
+Link to related [[SIM_...]] pages. This section governs whether published work is reproducible.>
+
+## Decision Guidance *(add only if source material addresses this)*
+
+<When to prefer this simulator: the model class, scale, and infrastructure that make it the
+right choice. When to prefer an alternative: conditions under which another simulator is more
+appropriate and why. Draw from published comparisons and benchmark papers; do not speculate. (@Key)>
+
+## Availability
+
+<Repository, documentation, license, and the canonical citation to use.
+URLs, licenses, and version numbers are pointers rather than factual claims and need no
+citation; any claim about version-specific *behaviour* does. State the version these
+statements describe.>
+
+## Controversies *(add only if encountered)*
+
+<Only include this section when the source material directly presents disputed benchmark
+results, contested claims of equivalence between simulators, or disagreement over whether an
+implementation faithfully realizes a model. Do not speculate. Omit entirely if none apply.>
+
+## Usage in the Literature
+
+<Notable studies built with this simulator. What has it been used to model? (@Key)>
+
+## Relevance to This Project
+
+<How this simulator is or could be used in the current project's context.>
+```
+
+---
+
+### 1.11 DAT_ — Canonical Dataset
 
 ```markdown
 ---
@@ -659,6 +794,10 @@ updated: YYYY-MM-DD
 ## Analysis Methods
 | Page | Title | Confidence | Updated |
 |------|-------|------------|---------|
+
+## Simulation Software
+| Page | Title | Subtype | Updated |
+|------|-------|---------|---------|
 
 ## Canonical Datasets
 | Page | Title | Updated |

@@ -24,23 +24,38 @@ The authoritative page templates are in `agent/TEMPLATES.md` Section 1. The chec
 
 | Type | Required frontmatter fields |
 |------|-----------------------------|
-| All pages | `type`, `title`, `updated` |
-| PHE_, MOD_, REG_ | + `confidence` |
+| All pages | `type`, `title`, `updated`, `related` (list; empty list `[]` acceptable if no links yet) |
+| PHE_, MOD_, REG_, CEL_, NET_, TECH_, ANA_ | + `confidence` |
 | THE_ | + `status` |
-| MOD_ | + `subtype` |
-| All pages | `related` (list; empty list `[]` acceptable if no links yet) |
+| MOD_ | + `explanatory_character`, `marr_level` (list), `construction`, `exploratory` |
+| NET_ | + `scale` (scalar) |
+| TECH_ | + `subtype` |
+| SIM_ | + `subtype`, `scale` (list), `formalism` (list) |
+| PAR_, DAT_ | *(no additional fields)* |
 
-Valid `type` values: `phenomenon`, `model`, `theory`, `region`, `paradigm`, `index`
+Valid `type` values: `phenomenon`, `model`, `theory`, `region`, `cell_type`, `circuit`, `paradigm`, `technique`, `analysis`, `simulator`, `dataset`, `index`
+
+`TECH_` and `SIM_` both use `subtype`, but the vocabularies are disjoint:
+`acquisition | preprocessing | stimulation` for TECH_, `engine | interface | platform` for SIM_.
 
 ### Section order by page type
 
+Sections marked *(conditional)* appear only when the source material warrants them. Never stub a
+conditional section — its absence is not a defect.
+
 | Type | Required sections, in order |
 |------|-----------------------------|
-| PHE_ | Description · Empirical Basis · Key Parameters and Quantitative Signatures · Generality · Controversies · Modeling Implications |
-| MOD_ | Description · Formal Description · Core Assumptions · Empirical Support · Empirical Challenges · Comparison to Alternatives · Controversies · Usage in the Literature |
-| THE_ | Core Claims · Explanatory Schema · Model Family · Mechanistic Grounding · Empirical Scope · Controversies · Key Sources |
-| REG_ | Anatomical Identity · Physiology · Connectivity · Functional Role(s) · Controversies · Modeling Considerations |
-| PAR_ | Description · What It Measures / Reveals · Standard Variants · Limitations and Confounds · Key Studies and Datasets · Relevance to This Project |
+| PHE_ | Description · Empirical Basis · Key Parameters and Quantitative Signatures · Generality · Controversies *(conditional)* · Modeling Implications |
+| MOD_ | Description · Descriptive Target · Explanatory Scope · Formal Description · Core Assumptions · Empirical Support · Empirical Challenges · Comparison to Alternatives · Controversies *(conditional)* · Usage in the Literature |
+| THE_ | Core Claims · Explanatory Schema · Model Family · Mechanistic Grounding · Empirical Scope · Controversies *(conditional)* · Key Sources |
+| REG_ | Anatomical Identity · Connectivity · Functional Role(s) · Principal Cell Types · Controversies *(conditional)* · Modeling Considerations |
+| CEL_ | Identity · Distribution · Physiology · Connectivity · Functional Role(s) · Controversies *(conditional)* · Modeling Considerations |
+| NET_ | Description · Components · Connectivity Architecture · Functional Organization · Controversies *(conditional)* · Modeling Considerations |
+| PAR_ | Description · What It Measures / Reveals · Standard Variants · Limitations and Confounds · Key Studies · Relevance to This Project |
+| TECH_ | Description · Spatial and Temporal Resolution · Key Assumptions and Limitations · Species and Preparation Compatibility · Standard Variants · Decision Guidance *(conditional)* · Software and Hardware · Controversies *(conditional)* |
+| ANA_ | Description · Key Assumptions · Known Artifacts and Limitations · Standard Variants · Decision Guidance *(conditional)* · Software Implementations · Usage in the Literature |
+| SIM_ | Description · Modeling Scope · Numerical Methods and Implementation · Built-in Assumptions and Idealizations · Verification and Validation · Performance and Scaling · Interoperability and Model Specification · Decision Guidance *(conditional)* · Availability · Controversies *(conditional)* · Usage in the Literature · Relevance to This Project |
+| DAT_ | Description · Recording Conditions · Modality and Scale · Data Structure and Access · Key Publications · Relevance to This Project |
 
 ### Notation standards
 

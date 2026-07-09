@@ -74,7 +74,7 @@ Do not process any new PDFs.
 I need to evaluate our choice of [MODEL/METHOD].
 Critically evaluate the empirical support, core assumptions and biological basis,
 and how it compares to [ALTERNATIVE].
-Draw from MOD_, THE_, PHE_, REG_, CEL_, and NET_ pages. Do not process any new PDFs.
+Draw from MOD_, THE_, PHE_, REG_, CEL_, NET_, and SIM_ pages. Do not process any new PDFs.
 ```
 
 ### Decision support — method or preprocessing choice
@@ -82,7 +82,7 @@ Draw from MOD_, THE_, PHE_, REG_, CEL_, and NET_ pages. Do not process any new P
 I need to decide [DECISION, e.g. which motion correction threshold to use / whether to
 bandpass filter / which decoding method to apply].
 Our data: [brief description of modality, species, paradigm, known noise properties].
-Check the Decision Guidance and Key Assumptions sections of relevant TECH_ and ANA_ pages,
+Check the Decision Guidance and Key Assumptions sections of relevant TECH_, ANA_, and SIM_ pages,
 and the Relevance to This Project sections for context from prior sessions.
 Summarise what the wiki supports and flag where the decision requires information not
 covered. Do not process any new PDFs.
@@ -93,8 +93,19 @@ covered. Do not process any new PDFs.
 I need to assess whether [ASSUMPTION, e.g. Gaussian noise / linear summation / stationarity]
 is justified for our use of [MODEL/METHOD].
 Check the Core Assumptions section of the relevant MOD_ or ANA_ page, including the
-biological justification and when-violated sub-items.
+biological justification and when-violated sub-items. If the assumption may be imposed by the
+simulator rather than the model, check Built-in Assumptions and Idealizations on the SIM_ page.
 Summarise what the wiki says and flag any gaps. Do not process any new PDFs.
+```
+
+### Decision support — simulator choice
+```
+I need to choose simulation software for [MODEL/SYSTEM, e.g. a multicompartment cortical
+microcircuit / a whole-brain neural mass model].
+Compare the Modeling Scope, Built-in Assumptions and Idealizations, Performance and Scaling,
+and Decision Guidance sections of the relevant SIM_ pages.
+State what each simulator would commit us to that we did not intend, and flag where the
+choice requires information the wiki does not cover. Do not process any new PDFs.
 ```
 
 ### Wiki overview

@@ -8,16 +8,16 @@ For task-specific instructions, read the relevant module file listed under **Wor
 
 ## Project Identity
 
-Project name:             Example Wiki: The role of gamma synchrony in early visual cortex
-Main research question:   Does gamma synchrony play a functional role in early visual cortex?
-Model type(s):            Biophysical, Functional
-Theories:                 Theory of Weakly Coupled Oscillators, Binding Through Synchrony, Binding By Enhanced Firing, etc.
-Brain region(s):          V1, V4
-Organism / data type:     Human, macaque
-Key phenomena to explain:
-  - Gamma synchrony
+Project name:             
+Main research question:   
+Model type(s):            
+Theories:                 
+Brain region(s):          
+Organism / data type:     
+Key phenomena to explain: 
+  - 
 Project-specific glossary: 
-Contributors:             Mario Senden
+Contributors:             
 
 ---
 
@@ -72,10 +72,11 @@ There are no per-paper pages. Papers are sources synthesized into concept pages.
 | `PAR_` | Experimental paradigm | Behavioral task or protocol: what the subject experiences and does; no equipment or analysis details |
 | `TECH_` | Technical method | Procedure for acquiring, preprocessing, or stimulating neural/behavioral signals |
 | `ANA_` | Analysis method | Post-hoc data analysis procedure: statistics, dimensionality reduction, decoding, inference |
+| `SIM_` | Simulation software | Software that instantiates a model and numerically integrates it to produce simulated data |
 | `DAT_` | Canonical dataset | Curated, publicly accessible data collection serving as a community reference |
 
 Slug convention: lowercase, hyphenated, descriptive.
-Examples: `PHE_place-cell-remapping`, `MOD_ring-attractor`, `REG_v1`, `CEL_pv-interneuron`, `NET_basal-ganglia-thalamic-loop`, `PAR_morris-water-maze`, `TECH_two-photon-imaging`, `ANA_population-decoding`, `DAT_allen-brain-atlas`
+Examples: `PHE_place-cell-remapping`, `MOD_ring-attractor`, `REG_v1`, `CEL_pv-interneuron`, `NET_basal-ganglia-thalamic-loop`, `PAR_morris-water-maze`, `TECH_two-photon-imaging`, `ANA_population-decoding`, `SIM_nest`, `DAT_allen-brain-atlas`
 
 Full page templates, `wiki/index.md` structure, conflict resolution rules, and citation integrity rules: see `agent/TEMPLATES.md`.
 
@@ -140,7 +141,7 @@ Confidence upgrades and downgrades both require a note citing the motivating evi
 2. Never fabricate citations. Unresolvable secondary references: `<!-- UNRESOLVED: <description> -->`.
 3. The `†` dagger is mandatory on every secondary citation.
 4. Equations before prose on all MOD_ pages.
-5. PHE_, REG_, CEL_, and NET_ pages describe observations. MOD_ pages describe proposals. THE_ pages describe theories and their explanatory architecture. Never conflate.
+5. PHE_, REG_, CEL_, and NET_ pages describe observations. MOD_ pages describe proposals. THE_ pages describe theories and their explanatory architecture. SIM_ pages describe software that implements models, not the models themselves. Never conflate.
 6. Confidence is mandatory on every PHE_, MOD_, REG_, CEL_, NET_, TECH_, and ANA_ page.
 7. Cross-link using `[[TYPE_slug]]` within page bodies. Use relative paths in `index.md`.
 8. Flag uncertainty with `> ⚠️ Uncertain: <reason>`.

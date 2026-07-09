@@ -16,8 +16,18 @@ import sys
 from pathlib import Path
 from datetime import date
 
+# The frontmatter `type` value for each page-type prefix, plus the wiki root index.
+# Nothing else in the repo enforces the prefix-to-type mapping, so an unlisted value
+# here is the only signal that a page carries a typo'd or invented type.
+VALID_TYPES = {
+    "phenomenon", "model", "theory", "region", "cell_type", "circuit",
+    "paradigm", "technique", "analysis", "simulator", "dataset", "index"
+}
+
 # Confidence is mandatory on PHE_, MOD_, REG_, CEL_, NET_, TECH_, ANA_ pages
 # (CLAUDE.md rule 6). These are the corresponding frontmatter `type` values.
+# SIM_ pages are deliberately absent: a simulator is an artifact, not an
+# empirical claim.
 CONFIDENCE_TYPES = {
     "phenomenon", "model", "region", "cell_type", "circuit", "technique",
     "analysis"
@@ -34,11 +44,26 @@ VALID_CONSTRUCTION = {"theory-derived", "data-driven", "hybrid"}
 VALID_EXPLORATORY = {"true", "false"}
 VALID_MARR_LEVEL = {"computational", "algorithmic", "implementational"}
 
-# NET_ pages carry a spatial scale; TECH_ pages carry an acquisition subtype.
+# NET_ pages carry a single spatial scale; SIM_ pages carry a list of scales.
 SCALE_TYPES = {"circuit"}
 VALID_SCALE = {"local", "mesoscale", "large-scale"}
-SUBTYPE_TYPES = {"technique"}
-VALID_SUBTYPE = {"acquisition", "preprocessing", "stimulation"}
+
+# TECH_ and SIM_ both carry `subtype`, but the vocabularies are disjoint.
+SUBTYPE_BY_TYPE = {
+    "technique": {"acquisition", "preprocessing", "stimulation"},
+    "simulator": {"engine", "interface", "platform"},
+}
+
+# SIM_ pages declare what they can express: coarse scale, and precise formalism.
+SIMULATOR_TYPES = {"simulator"}
+VALID_SIM_SCALE = {
+    "molecular", "single-neuron", "microcircuit", "large-scale-network",
+    "whole-brain"
+}
+VALID_FORMALISM = {
+    "reaction-diffusion", "multicompartment-biophysical", "point-neuron-spiking",
+    "rate-based", "neural-mass", "neural-field"
+}
 
 
 def parse_frontmatter(text):
@@ -72,6 +97,19 @@ def scalar(fm, key):
     """Frontmatter value as a string; '' if absent or list-valued."""
     v = fm.get(key, "")
     return v if isinstance(v, str) else ""
+
+
+def check_list_field(fm, key, valid):
+    """Errors for a frontmatter field that must be a non-empty list of `valid` values."""
+    val = fm.get(key, "")
+    if isinstance(val, list):
+        if not val:
+            return [f"Missing {key} field"]
+        bad = [v for v in val if v not in valid]
+        return [f"Invalid {key} value(s): {bad}"] if bad else []
+    if not val or "MISSING" in val:
+        return [f"Missing {key} field"]
+    return [f"{key} must be a list"]
 
 
 def parse_bib_keys(bib_path):
@@ -110,6 +148,9 @@ def validate_page(path, fm, body):
         if not val or "MISSING" in val:
             errors.append(f"Missing required frontmatter field: {field}")
 
+    if page_type and "MISSING" not in page_type and page_type not in VALID_TYPES:
+        errors.append(f"Unknown type value: {page_type!r}")
+
     if page_type in CONFIDENCE_TYPES:
         val = scalar(fm, "confidence")
         if not val or "MISSING" in val:
@@ -144,17 +185,7 @@ def validate_page(path, fm, body):
             errors.append(
                 f"Invalid exploratory value: {val!r} (expected true or false)")
 
-        marr = fm.get("marr_level", "")
-        if isinstance(marr, list):
-            bad = [m for m in marr if m not in VALID_MARR_LEVEL]
-            if not marr:
-                errors.append("Missing marr_level field")
-            elif bad:
-                errors.append(f"Invalid marr_level value(s): {bad}")
-        elif not marr or "MISSING" in marr:
-            errors.append("Missing marr_level field")
-        else:
-            errors.append("marr_level must be a list")
+        errors += check_list_field(fm, "marr_level", VALID_MARR_LEVEL)
 
     if page_type in SCALE_TYPES:
         val = scalar(fm, "scale")
@@ -163,11 +194,15 @@ def validate_page(path, fm, body):
         elif val not in VALID_SCALE:
             errors.append(f"Invalid scale value: {val!r}")
 
-    if page_type in SUBTYPE_TYPES:
+    if page_type in SIMULATOR_TYPES:
+        errors += check_list_field(fm, "scale", VALID_SIM_SCALE)
+        errors += check_list_field(fm, "formalism", VALID_FORMALISM)
+
+    if page_type in SUBTYPE_BY_TYPE:
         val = scalar(fm, "subtype")
         if not val or "MISSING" in val:
             errors.append("Missing subtype field")
-        elif val not in VALID_SUBTYPE:
+        elif val not in SUBTYPE_BY_TYPE[page_type]:
             errors.append(f"Invalid subtype value: {val!r}")
 
     updated_val = scalar(fm, "updated")
